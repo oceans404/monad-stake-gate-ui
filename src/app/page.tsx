@@ -1,101 +1,83 @@
-import Image from "next/image";
+'use client';
+
+import { useEffect, useState } from 'react';
+import Link from 'next/link';
+import { GatedContent } from '@/components/GatedContent';
+import {
+  useStakingContract,
+  STAKING_CONTRACT_ADDRESS,
+} from '@/hooks/useStakingContract';
+import { StakingStatus } from '@/components/StakingStatus';
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  const [mounted, setMounted] = useState(false);
+  const { requiredAmount, loading, contractName } = useStakingContract();
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const stakeAmount = loading ? '' : `Stake ${requiredAmount} MON`;
+  const appName = loading ? '' : contractName;
+
+  return (
+    <main className="max-w-4xl mx-auto p-6">
+      <div className="text-center mb-12">
+        <h1 className="text-4xl font-bold mb-6">
+          BUILDER TEMPLATE: Monad Staking-gated App
+        </h1>
+        <p className="text-xl text-gray-600 mb-8">
+          This is a plug-and-play template to help developers to build MON-gated
+          applications
+        </p>
+      </div>
+
+      <div className="grid gap-8">
+        <div className="bg-white rounded-lg shadow-lg p-8">
+          <h2 className="text-2xl font-bold mb-4">Public Content</h2>
+          <p className="text-gray-600 mb-4">
+            This section is public. Customize this to explain your application's
+            value proposition. Show visitors why staking MON tokens will be
+            worth their while.
+          </p>
+          <div className="prose max-w-none">
+            <div className="bg-purple-50 border border-purple-200 rounded-lg p-4 mb-6">
+              <h3 className="text-lg font-semibold text-purple-900 mb-2">
+                Customizable Staking Threshold
+              </h3>
+              <p className="text-purple-800 mb-2">
+                {stakeAmount} to unlock this app's gated content
+              </p>
+              <a
+                href={`https://testnet.monadexplorer.com/address/${STAKING_CONTRACT_ADDRESS}?tab=Contract`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm text-purple-600 hover:text-purple-800 underline"
+              >
+                View {appName} Contract on Explorer
+              </a>
+            </div>
+            <div className="flex justify-center">
+              <Link href="/stake" className="btn-primary">
+                Go to Staking Interface
+              </Link>
+            </div>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
+        <StakingStatus />
+      </div>
+
+      <footer className="text-center text-gray-600 text-sm mt-12">
+        Made with 💜 by{' '}
         <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+          href="https://github.com/oceans404"
           target="_blank"
           rel="noopener noreferrer"
+          className="text-primary-600 hover:text-primary-700"
         >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
+          Steph
         </a>
       </footer>
-    </div>
+    </main>
   );
 }
