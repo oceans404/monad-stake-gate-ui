@@ -6,10 +6,9 @@ A customizable template for building applications where content is gated behind 
 
 ![monad stake app](https://github.com/user-attachments/assets/be73413a-e05b-4be9-b8a9-82a611660b2a)
 
-
 ## 🚀 Quickstart
 
-### 1. Create Your Staking Contract
+### 1. Create Your App's Staking Contract
 
 - Visit the [StakingGateFactory contract](https://testnet.monadexplorer.com/address/0x7c809EA8370B2efD01b3f175Be3Aab970b66Ded3?tab=Contract) on Monad Explorer
 - Connect your wallet
@@ -17,7 +16,7 @@ A customizable template for building applications where content is gated behind 
 - Enter your parameters:
   - `requiredStakeAmount`: Your desired MON amount (e.g., 0.0069)
   - `name`: A name for your app (e.g., "MyAwesomeApp")
-- Execute the transaction and save your new contract address
+- Execute the transaction and save your new contract address - this is the address of the staking contract for your app
 
 Alternative methods:
 

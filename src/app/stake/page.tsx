@@ -30,9 +30,7 @@ export default function StakingPage() {
   return (
     <div className="max-w-2xl mx-auto p-6">
       <div className="bg-white rounded-lg shadow-lg p-6">
-        <h1 className="text-3xl font-bold mb-6">
-          {contractName || 'TestApp Staking'}
-        </h1>
+        <h1 className="text-3xl font-bold mb-6">Stake to use {contractName}</h1>
 
         {error && (
           <div className="bg-purple-50 border border-purple-200 text-purple-700 px-4 py-3 rounded mb-4">
@@ -46,7 +44,7 @@ export default function StakingPage() {
           </div>
         )}
 
-        <div className="space-y-4 mb-8">
+        <div className="space-y-4 mb-8 mt-50">
           <div className="flex justify-between items-center py-2 border-b">
             <span className="text-gray-600">Status</span>
             <span
