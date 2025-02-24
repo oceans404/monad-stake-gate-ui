@@ -4,7 +4,8 @@ A customizable template for building applications where content is gated behind 
 
 > **Note:** This frontend template works with the [StakingGateFactory](https://github.com/oceans404/monad-app-stake-gate) smart contract.
 
-![Monad Staking Gate Template](https://via.placeholder.com/800x400?text=Monad+Staking+Gate+Template)
+![monad stake app](https://github.com/user-attachments/assets/be73413a-e05b-4be9-b8a9-82a611660b2a)
+
 
 ## 🚀 Quickstart
 
@@ -188,4 +189,4 @@ Contributions are welcome! Please feel free to submit a pull request.
 
 ---
 
-Made with ❤️ by [Steph](https://github.com/oceans404) for the Monad developer community
+Made with 💜 by [Steph](https://github.com/oceans404) for the Monad developer community
